@@ -1,11 +1,11 @@
-app.reorderList = function(){
 
-  $('.section-slide').mousedown(function(e){
+
+  $('.section-content').mousedown(function(e){
     // the section we clicked on (this) is set to the variable 'item'
     var item = $(this);
 
     // item (the section we clicked on) has it's class set to 'selected-slide'
-    item.addClass('.selected-slide');
+    item.addClass('selected-slide');
 
     // selectstart is when the user starts to select text
     // dragstart is when a drag is started
@@ -27,10 +27,34 @@ app.reorderList = function(){
     function shouldMoveUp(y){
       var offset = item.prev().offset();
 
-      
+      return offset && offset.top > y;
     };
+
+    function shouldMoveDown(y){
+      var next = item.next();
+      var offset = next.offset();
+
+      return offset && offset.top + next.height() < y
+    }
+
+    function reorder(e){
+      if (shouldMoveUp(e.pageY)) {
+        item.insertBefore(item.prev());
+      }
+      else if (shouldMoveDown(e.pageY)) {
+        item.insertAfter(item.next());
+      }
+
+      return false;
+    }
+
+    function doneReordering(){
+      item.removeClass('selected-slide');
+      $('body').off('mouseup', doneReordering);
+      $('body').off('mousemove', reorder);
+      $(document).off('selectstart dragstart', cancelTextSelection);
+    }
 
 
 
   });
-};
