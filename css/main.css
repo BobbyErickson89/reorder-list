@@ -1,0 +1,47 @@
+/** {
+  margin: 10px;
+  padding: 10px;
+  border: 1px dotted black;
+}*/
+
+/*ELEMENT SELECTORS*/
+
+body {
+  background: gray;
+  color: white;
+  font-family: sans-serif;
+}
+
+
+/*CLASS SELECTORS*/
+
+.main-container {
+  width: 40%;
+  border: 1px solid white;
+}
+
+.section-content {
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+  padding: 1em;
+}
+
+.section-number {
+  float: left;
+}
+
+.section-slide {
+  border: 1px solid white;
+  padding: 1em;
+}
+
+.section-slide:hover{
+  cursor: pointer;
+}
+
+.selected-slide {
+  border: 1px solid white;
+  padding: 1em;
+  box-shadow: 10px 10px 10px black;
+}
